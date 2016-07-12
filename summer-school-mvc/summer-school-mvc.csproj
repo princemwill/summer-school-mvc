@@ -272,9 +272,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="summerSchool.jpg" />
-    <Content Include="Views\Home\chalkboard.png" />
-    <Content Include="Views\Home\summerSchool.jpg" />
-    <Content Include="Views\Home\summerSchool2.jpg" />
+    <Content Include="Views\Home\chalkboard2.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
