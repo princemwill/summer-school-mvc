@@ -232,6 +232,9 @@
     <Content Include="chalkboard2.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\chalkboard2.jpg" />
+    <Content Include="Content\Peter_Scrooge_Money_dive.gif" />
+    <Content Include="Content\sum_school_roster.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -273,7 +276,6 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="summerSchool.jpg" />
-    <Content Include="Views\Home\chalkboard2.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
