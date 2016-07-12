@@ -22,3 +22,26 @@ select,
 textarea {
     max-width: 280px;
 }
+   .jumbotron {
+    background-image:url("chalkboard2.jpg");
+    background-size: cover;
+    background-position: center center;
+    color: #ffffff;
+    text-align: center;
+}
+    .jumbotron {
+
+        font-size: 115%;
+    }
+
+    .row {
+        text-align: center;
+        color: #F4310E;
+        font-weight: 500;
+    }
+    body {
+        background-color: #474748;
+    }
+    .enrollPage {
+        color: #F4310E;
+    }
