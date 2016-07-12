@@ -1,13 +1,14 @@
 ﻿@model IEnumerable<summer_school_mvc.Models.Student>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Enroll";
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a class="btn btn-default" @Html.ActionLink("Enroll New Student", "Create")</a>
+    
 </p>
 <table class="table">
     <tr>

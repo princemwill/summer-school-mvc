@@ -16,34 +16,42 @@
 
     .row {
         text-align: center;
+        color: #F4310E;
+        font-weight: 500;
     }
-
+    body {
+        background-color: #474748;
+    }
+          
 </style>
 
-<div class="jumbotron">
-    <h1>SUMMER SCHOOL</h1><br />
-    <p class="lead">Summer is here and if you need schooling instead of fun and sun this is the place!</p>
-    
-</div>
+<body>
+
+    <div class="jumbotron">
+        <h1>SUMMER SCHOOL</h1><br />
+        <p class="lead">Summer is here and if you need schooling instead of fun and sun this is the place!</p>
+
+    </div>
 
 
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Enroll a Student</h2>
-        <p class="optDescrip">
-            Summer school is open for slacker and over achievers alike! Click below to enroll now!!!
-        </p>
-        <p><a class="btn btn-default" @Html.ActionLink("Students", "Index", "Students")</a></p>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Enroll</h2>
+            <p class="optDescrip">
+                Summer school is open for slackers and over achievers alike! Click below to enroll now!!!
+            </p>
+            <p><a class="btn btn-default" @Html.ActionLink("Enroll Student(s)", "Index", "Students")</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Costs</h2>
+            <p class="optDescrip">Coming Soon...</p>
+            <p><a class="btn btn-default" href="http://31.media.tumblr.com/tumblr_ls4cxfHfOC1qjykxzo1_400.gif">Tuition &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Roster</h2>
+            <p class="optDescrip">Coming Soon...</p>
+            <p><a class="btn btn-default" href="http://screenrant.com/wp-content/uploads/Marvel-Avengers-NOW-Female-Thor-Black-Captain-Americajpg.jpg">Roster &raquo;</a></p>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Costs</h2>
-        <p class="optDescrip">Coming Soon...</p>
-        <p><a class="btn btn-default" href="http://31.media.tumblr.com/tumblr_ls4cxfHfOC1qjykxzo1_400.gif">Tuition &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Roster</h2>
-        <p class="optDescrip">Coming Soon...</p>
-        <p><a class="btn btn-default" href="http://screenrant.com/wp-content/uploads/Marvel-Avengers-NOW-Female-Thor-Black-Captain-Americajpg.jpg">Roster &raquo;</a></p>
-    </div>
-</div>
+</body>
