@@ -48,6 +48,18 @@ namespace summer_school_mvc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "StudentID,FirstName,LastName,EnrollmentFee")] Student student)
         {
+            if (student.LastName == "Longbottom" && db.Students.Count() <=10)
+            {
+                student.EnrollmentFee = 0;
+            }
+            else if (student.LastName == "Potter")
+            {
+                student.EnrollmentFee = 100;
+            }
+            else
+            {
+                student.EnrollmentFee = 200;
+            }
             if (ModelState.IsValid)
             {
                 db.Students.Add(student);
@@ -71,15 +83,17 @@ namespace summer_school_mvc.Controllers
                 return HttpNotFound();
             }
             return View(student);
-        }
+       }
 
+        
         // POST: Students/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StudentID,FirstName,LastName,EnrollmentFee")] Student student)
+        public ActionResult Edit([Bind(Include = "StudentID,FirstName,LastName")] Student student)
         {
+           
             if (ModelState.IsValid)
             {
                 db.Entry(student).State = EntityState.Modified;
