@@ -40,17 +40,14 @@ textarea {
         font-weight: 500;
     }
     body {
-        background-color: #474748;
+        background-color: #7f8c8d;
     }
     .enrollPage {
         color: #F4310E;
     }
 
 
-    /* attempt to make buttons raised*/
-
-
-
+    /* button theming (raised)*/
     /**************************
   DEFAULT BOOTSTRAP STYLES
 **************************/
@@ -102,7 +99,7 @@ textarea {
   RAISED BUTTONS
 ************************/
 .btn-primary.raised {
-	box-shadow: 0 3px 0 0 #d35400;
+	box-shadow: 0 3px 0 0 #ff0000;
 }
 .btn-primary.raised:active, .btn-primary.raised.active {
 	background: #33a6cc;

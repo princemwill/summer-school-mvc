@@ -60,6 +60,12 @@ namespace summer_school_mvc.Controllers
             {
                 student.EnrollmentFee = 200;
             }
+            // looks like i forgot part. trying to get this to work//
+            if (student.FirstName.ToLower()[0] == student.LastName.ToLower()[0])
+            {
+
+                student.EnrollmentFee = 0.9 * student.EnrollmentFee;
+            }
             if (ModelState.IsValid)
             {
                 db.Students.Add(student);
