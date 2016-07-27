@@ -12,11 +12,12 @@ namespace summer_school_mvc.Controllers
 {
     public class StudentsController : Controller
     {
-        private SummerSchoolMVCEntities db = new SummerSchoolMVCEntities();
+        private SummerSchoolMVCEntities db = new SummerSchoolMVCEntities ();
 
         // GET: Students
         public ActionResult Index()
         {
+            // look for Index.cshtml in the Views/Students folder
             return View(db.Students.ToList());
         }
 
@@ -41,31 +42,43 @@ namespace summer_school_mvc.Controllers
             return View();
         }
 
+
+        int calculateEnrollmentCost(string firstName, string lastName)
+        {
+            //"John Jacob Jingle Schmidt"
+            //"Larry Potter"
+            //"Bob"
+
+            double cost = 200;
+
+            // POTter, Potter, potter, POTTER
+            if (lastName.ToLower() == "potter")
+            {
+                cost *= 0.5;
+            } // SELECT COUNT(*) FROM Students
+            int numberOfStudents = db.Students.Count();
+
+            if (lastName.ToLower() == "longbottom" && numberOfStudents <= 10)
+            {
+                cost = 0;
+            }
+            if (firstName.ToLower()[0] == lastName.ToLower()[0])
+            {
+                cost = 0.9 * cost;
+            }
+            return (int)cost;
+        }
+
         // POST: Students/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StudentID,FirstName,LastName,EnrollmentFee")] Student student)
+        public ActionResult Create([Bind(Include = "StudentID,FirstName,LastName")] Student student)
         {
-            if (student.LastName == "Longbottom" && db.Students.Count() <=10)
-            {
-                student.EnrollmentFee = 0;
-            }
-            else if (student.LastName == "Potter")
-            {
-                student.EnrollmentFee = 100;
-            }
-            else
-            {
-                student.EnrollmentFee = 200;
-            }
-            // looks like i forgot part. trying to get this to work//
-            if (student.FirstName.ToLower()[0] == student.LastName.ToLower()[0])
-            {
+            // TODO: calculate enrollment fee
+            student.EnrollmentFee = calculateEnrollmentCost(student.FirstName, student.LastName);
 
-                student.EnrollmentFee = 0.9 * student.EnrollmentFee;
-            }
             if (ModelState.IsValid)
             {
                 db.Students.Add(student);
@@ -89,17 +102,15 @@ namespace summer_school_mvc.Controllers
                 return HttpNotFound();
             }
             return View(student);
-       }
+        }
 
-        
         // POST: Students/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StudentID,FirstName,LastName")] Student student)
+        public ActionResult Edit([Bind(Include = "StudentID,FirstName,LastName,EnrollmentFee")] Student student)
         {
-           
             if (ModelState.IsValid)
             {
                 db.Entry(student).State = EntityState.Modified;

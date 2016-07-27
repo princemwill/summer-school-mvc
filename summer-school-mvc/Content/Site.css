@@ -28,11 +28,9 @@ textarea {
     background-position: center center;
     color: #ffffff;
     text-align: center;
+    font-size: 115%;
 }
-    .jumbotron {
-
-        font-size: 115%;
-    }
+ 
 
     .row {
         text-align: center;
