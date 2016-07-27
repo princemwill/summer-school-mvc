@@ -14,6 +14,7 @@ namespace summer_school_mvc.Controllers
     {
         private SummerSchoolMVCEntities db = new SummerSchoolMVCEntities ();
 
+        private int MaximumEnrollment = 15;
         // GET: Students
                
         public ActionResult Index( string search)
@@ -34,6 +35,8 @@ namespace summer_school_mvc.Controllers
                            select item;
             }
             ViewBag.TotalEnrollmentFee = totalFees();
+            ViewBag.MaximumEnrollment = MaximumEnrollment;
+            ViewBag.CurrentEnrollment = db.Students.Count();
             return View(students);
         }
 
@@ -55,7 +58,15 @@ namespace summer_school_mvc.Controllers
         // GET: Students/Create
         public ActionResult Create()
         {
-            return View();
+            if (db.Students.Count() >= MaximumEnrollment)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
+            
         }
 
 
@@ -103,6 +114,18 @@ namespace summer_school_mvc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "StudentID,FirstName,LastName")] Student student)
         {
+
+            if (db.Students.Count() >= MaximumEnrollment)
+            {
+                return RedirectToAction("Index");
+            }
+
+            if (student.LastName.ToLower() == "malfoy")
+            {
+                return View("Malfoy"); 
+            }
+            string combinedName = (student.FirstName + student.LastName).ToLower();
+
             // TODO: calculate enrollment fee
             student.EnrollmentFee = calculateEnrollmentCost(student.FirstName, student.LastName);
 
@@ -110,6 +133,12 @@ namespace summer_school_mvc.Controllers
             {
                 db.Students.Add(student);
                 db.SaveChanges();
+
+                if (combinedName.Contains("riddle") || combinedName.Contains("voldemort"))
+                {
+                    return View("Voldemort");
+                }
+
                 return RedirectToAction("Index");
             }
 

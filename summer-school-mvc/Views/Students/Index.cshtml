@@ -7,12 +7,22 @@
     <h2>Enrolled Students</h2>
 
     <p>
-        <a class="btn btn-primary btn-lg raised" @Html.ActionLink("Enroll New Student", "Create")</a>
+        @ViewBag.CurrentEnrollment students currently enrolled.
+        @if (ViewBag.CurrentEnrollment < ViewBag.MaximumEnrollment)
+        {
+            <a class="btn btn-primary btn-sm raised" href="@Url.Action("Create")">Enroll a student</a>
+        }
+        else
+        {
+            <span> Enrollemnt is closed.</span>
+        }
     </p>
     @using (Html.BeginForm())
     {
-        <p>Find by name: @Html.TextBox("search")
-        <input type="submit" value="Search"/></p>
+        <p>
+            Find by name: @Html.TextBox("search")
+            <input type="submit" value="Search" />
+        </p>
     }
 
     <table class="table">
