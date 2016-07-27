@@ -15,10 +15,26 @@ namespace summer_school_mvc.Controllers
         private SummerSchoolMVCEntities db = new SummerSchoolMVCEntities ();
 
         // GET: Students
-        public ActionResult Index()
+               
+        public ActionResult Index( string search)
         {
             // look for Index.cshtml in the Views/Students folder
-            return View(db.Students.ToList());
+
+            //select ALL the students
+            //so we can later filter optionally
+            var students = from item in db.Students
+                           select item;
+
+            //filter
+            if (!String.IsNullOrEmpty(search))
+            {
+                students = from item in students
+                           where item.LastName.Contains(search) ||
+                           item.FirstName.Contains(search)
+                           select item;
+            }
+            ViewBag.TotalEnrollmentFee = totalFees();
+            return View(students);
         }
 
         // GET: Students/Details/5
@@ -67,6 +83,17 @@ namespace summer_school_mvc.Controllers
                 cost = 0.9 * cost;
             }
             return (int)cost;
+        }
+
+        public decimal totalFees()
+        {
+            
+            decimal runningTotal = 0;
+            foreach (Student student in db.Students)
+            {
+                runningTotal = runningTotal + student.EnrollmentFee;
+            }
+            return runningTotal;
         }
 
         // POST: Students/Create
